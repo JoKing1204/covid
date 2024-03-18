@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,9 +20,17 @@ public class GameController {
     }
 
     @GetMapping
-    public List<Game> getStudents() {
-        return gameService.getGame();
+    public List<Game> getGames() {
+        return gameService.getGames();
     }
+
+    @GetMapping(path ="{gameId}")
+    public Optional<Game> getGame(@PathVariable("gameId") Long id) {
+        return gameService.getGame(id);
+    }
+
+
+
     @PostMapping
     public void registerNewGame(@RequestBody Game game){
         gameService.addNewGame(game);

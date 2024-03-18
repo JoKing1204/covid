@@ -16,8 +16,11 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    public List<Game> getGame() {
+    public List<Game> getGames() {
         return gameRepository.findAll();
+    }
+    public Optional<Game> getGame(Long gameId) {
+        return gameRepository.findById(gameId);
     }
     public void addNewGame(Game game){
         Optional<Game> gameOptional = gameRepository
